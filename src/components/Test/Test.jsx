@@ -39,7 +39,7 @@ export const Test = () => {
   }
 
   return (
-    <>
+    <div>
       {user && <img src={avatarSrc} alt="avatar" width={300} />}
       <>
         <input
@@ -82,7 +82,7 @@ export const Test = () => {
           Register
         </button>
       </>
-    </>
+    </div>
   );
 };
 
