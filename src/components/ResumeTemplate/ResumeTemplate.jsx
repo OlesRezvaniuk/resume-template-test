@@ -10,8 +10,6 @@ export const ResumeTemplate = () => {
   const [authVisible, setAuthVisible] = useState(false);
   const { user } = useSelector(userSelector);
 
-  console.log(authVisible);
-
   return (
     <ResumeTemplateContainer
       onMouseOver={() => {

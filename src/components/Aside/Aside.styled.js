@@ -6,3 +6,7 @@ export const AsideContainer = styled.aside`
   padding-top: 40px;
   background-color: #1e2939;
 `;
+
+export const AsideInfoContainer = styled.div`
+  padding: 0px 40px;
+`;
