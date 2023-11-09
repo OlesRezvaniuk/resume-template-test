@@ -10,6 +10,11 @@ export const StatusForAll = {
 
 const initialState = {
   user: null,
+  userData: {
+    tel: "+380681193663",
+    email: "orezvaniuk@gmail.com",
+    location: ["Kyiv", "Ukraine"],
+  },
   token: null,
   status: null,
 };

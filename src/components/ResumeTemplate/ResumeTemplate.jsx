@@ -5,11 +5,12 @@ import { Auth } from "../Auth/Auth";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../redux/user/userSelector";
 import { useState } from "react";
+import { InputModal } from "../InputModal/InputModal";
 
 export const ResumeTemplate = () => {
   const [authVisible, setAuthVisible] = useState(false);
+  const [inputModal, setInputModal] = useState({ state: false, value: null });
   const { user } = useSelector(userSelector);
-
   return (
     <ResumeTemplateContainer
       onMouseOver={() => {
@@ -21,8 +22,11 @@ export const ResumeTemplate = () => {
     >
       {authVisible && <Auth />}
       <Box>
-        <Aside></Aside>
+        <Aside inputModal={inputModal} setInputModal={setInputModal}></Aside>
         <Main></Main>
+        {inputModal.state && (
+          <InputModal inputModal={inputModal} setInputModal={setInputModal} />
+        )}
       </Box>
     </ResumeTemplateContainer>
   );

@@ -10,11 +10,14 @@ export const ContactsTitle = styled.h2`
   font-weight: 700;
   line-height: normal;
   margin-bottom: 8px;
-  pointer-events: none;
+  cursor: default;
 `;
 
 export const ContactList = styled.ul`
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 `;
 
 export const ContactListItem = styled.li`
@@ -23,9 +26,14 @@ export const ContactListItem = styled.li`
   line-height: 1.71;
   color: #fff;
   opacity: 1;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    color: ${(props) => (props.$link ? "#4b78b8" : "#fff")};
+  }
 `;
 
 export const ContactLinks = styled.a`
-  text-decoration: ${(props) => (props.$kind === "email" ? "revert" : "none")};
+  text-decoration: ${(props) => (props.$kind ? "revert" : "none")};
   color: inherit;
 `;

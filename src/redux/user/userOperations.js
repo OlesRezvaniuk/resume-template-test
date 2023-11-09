@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { firebaseExports } from "../../firebase/firebase";
+import { userSelector } from "./userSelector";
 
 export const googleAuth = createAsyncThunk(
   "user/singUp",
