@@ -1,25 +1,19 @@
 import { InputStyled, ModalBackdrop } from "./InputModal.styled";
-import { fakeData2 } from "../Contacts/Contacts";
+import { changeVisibleContactsModal } from "../../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
-export const InputModal = ({ inputModal, setInputModal }) => {
+export const InputModal = () => {
+  const dispatch = useDispatch();
   return (
     <ModalBackdrop
       id="backdrop"
       onClick={(e) => {
-        console.log(e.target.id);
         if (e.target.id === "backdrop") {
-          fakeData2.location[0] = inputModal.value;
-          setInputModal({ ...inputModal, state: false });
+          dispatch(changeVisibleContactsModal(false));
         }
       }}
     >
-      <InputStyled
-        type="text"
-        value={inputModal.value}
-        onChange={(e) => {
-          setInputModal({ ...inputModal, value: e.target.value });
-        }}
-      />
+      <InputStyled type="text" />
     </ModalBackdrop>
   );
 };

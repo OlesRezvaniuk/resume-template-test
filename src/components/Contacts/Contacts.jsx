@@ -2,72 +2,78 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import { userSelector } from "../../redux/user/userSelector";
+import { useParams } from "react-router-dom";
 import {
   ContactsTitle,
   ContactList,
   ContactListItem,
   ContactLinks,
+  ContactEditBtn,
+  EditIcon,
 } from "./Contacts.styled";
-import { nanoid } from "nanoid";
+import {
+  changeVisibleContactsModal,
+  changedData,
+} from "../../redux/user/userSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
-const fakeData = [
-  { id: nanoid(), kind: "tel", value: "+38 068 119 36 63" },
-  { id: nanoid(), kind: "email", value: "orezvaniuk@gmail.com" },
-  {
-    id: nanoid(),
-    kind: "location",
-    value: { location: "Kyiv", country: "Ukraine" },
-  },
-];
-
-export let fakeData2 = {
-  tel: "+38 068 119 36 63",
-  email: "orezvaniuk@gmail.com",
-  location: ["Kyiv", "Ukraine"],
-};
-
-export const Contacts = ({ inputModal, setInputModal }) => {
-  const user = useSelector(userSelector);
+export const Contacts = ({ optionsBtnVisible }) => {
+  const { userContacts } = useSelector(userSelector);
   const dispatch = useDispatch();
-  const [data, setData] = useState(fakeData2);
 
-  useEffect(() => {
-    setData(fakeData2);
-  }, inputModal);
-
-  console.log(user);
+  function arr() {
+    let userInfoArray = Object.keys(userContacts).map((key) => ({
+      [key]: userContacts[key],
+    }));
+    return userInfoArray;
+  }
 
   return (
     <div>
       <ContactsTitle>Contacts</ContactsTitle>
       <ContactList>
-        <ContactListItem $link={true}>
-          <ContactLinks href={`tel:${data.tel}`}>{data.tel}</ContactLinks>
-        </ContactListItem>
-        <ContactListItem $link={true}>
-          <ContactLinks $kind={true} href={`mailto:${data.email}`}>
-            {data.email}
-          </ContactLinks>
-        </ContactListItem>
-        <ContactListItem>
-          <span
-            style={{ cursor: "default" }}
-            onClick={(e) => {
-              setInputModal({ state: true, value: data.location[0] });
-            }}
-          >
-            {data.location[0]}
-          </span>
-          {`, `}
-          <span
-            style={{ cursor: "default" }}
-            onClick={(e) => {
-              setInputModal({ state: true, value: data.location[1] });
-            }}
-          >
-            {data.location[1]}
-          </span>
-        </ContactListItem>
+        {arr().map((item) => {
+          if (item.tel) {
+            return (
+              <ContactListItem>
+                {optionsBtnVisible.state && (
+                  <ContactEditBtn>
+                    <EditIcon />
+                  </ContactEditBtn>
+                )}
+                <ContactLinks $link={true} href={`tel:${item.tel}`}>
+                  {item.tel}
+                </ContactLinks>
+              </ContactListItem>
+            );
+          } else if (item.email) {
+            return (
+              <ContactListItem>
+                {optionsBtnVisible.state && (
+                  <ContactEditBtn>
+                    <EditIcon />
+                  </ContactEditBtn>
+                )}
+                <ContactLinks
+                  $link={true}
+                  $kind={true}
+                  href={`mailto:${item.email}`}
+                >
+                  {item.email}
+                </ContactLinks>
+              </ContactListItem>
+            );
+          } else {
+            return (
+              <ContactListItem key={nanoid()}>
+                <span>
+                  {item.city}
+                  {item.country}
+                </span>
+              </ContactListItem>
+            );
+          }
+        })}
       </ContactList>
     </div>
   );

@@ -10,13 +10,16 @@ export const StatusForAll = {
 
 const initialState = {
   user: null,
-  userData: {
+  userContacts: {
     tel: "+380681193663",
     email: "orezvaniuk@gmail.com",
-    location: ["Kyiv", "Ukraine"],
+    city: "Kyiv",
+    country: "Ukraine",
   },
   token: null,
   status: null,
+  modalData: { data: null, type: null, visible: false },
+  changedData: null,
 };
 const userSlice = createSlice({
   name: "user",
@@ -28,6 +31,20 @@ const userSlice = createSlice({
       state.user = payload.user;
     });
   },
+  reducers: {
+    changeData(state, { payload }) {
+      state.userData.tel = "ggg";
+    },
+    changeVisibleContactsModal(state, { payload }) {
+      state.modalData = null;
+    },
+    changedData(state, { payload }) {
+      state.changedData = payload;
+    },
+  },
 });
+
+export const { changeData, changeVisibleContactsModal, changedData } =
+  userSlice.actions;
 
 export default userSlice.reducer;

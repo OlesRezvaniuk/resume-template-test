@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as editIconPrimal } from "./icon/pencil.svg";
 
 export const ContactsContainer = styled.div``;
 
@@ -27,13 +28,39 @@ export const ContactListItem = styled.li`
   color: #fff;
   opacity: 1;
   transition: 250ms;
+  cursor: default;
+  position: relative;
+`;
+
+export const ContactLinks = styled.a`
+  text-decoration: ${(props) => (props.$kind ? "revert" : "none")};
+  color: inherit;
+  transition: 250ms;
   &:hover,
   &:focus {
     color: ${(props) => (props.$link ? "#4b78b8" : "#fff")};
   }
 `;
 
-export const ContactLinks = styled.a`
-  text-decoration: ${(props) => (props.$kind ? "revert" : "none")};
-  color: inherit;
+export const ContactEditBtn = styled.button`
+  position: absolute;
+  width: 27px;
+  left: -27px;
+  top: -3px;
+  border: none;
+  padding: none;
+  margin: none;
+  background: none;
+  fill: #fff;
+  transition: 250ms;
+  cursor: pointer;
+  &:focus,
+  &:hover {
+    fill: #4b78b8;
+  }
+`;
+
+export const EditIcon = styled(editIconPrimal)`
+  width: 15px;
+  fill: inherit;
 `;
