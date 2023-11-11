@@ -2,7 +2,6 @@ import { ResumeTemplateContainer, Box } from "./ResumeTemplate.styled";
 import { Aside } from "../Aside/Aside";
 import { Main } from "../Main/Main";
 import { Auth } from "../Auth/Auth";
-import { InputModal } from "../InputModal/InputModal";
 import { useState } from "react";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import { userSelector } from "../../redux/user/userSelector";
@@ -38,7 +37,6 @@ export const ResumeTemplate = () => {
       <Box>
         <Aside optionsBtnVisible={optionsBtnVisible}></Aside>
         <Main></Main>
-        {modalData.visible && <InputModal />}
       </Box>
     </ResumeTemplateContainer>
   );

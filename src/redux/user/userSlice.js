@@ -18,8 +18,7 @@ const initialState = {
   },
   token: null,
   status: null,
-  modalData: { data: null, type: null, visible: false },
-  changedData: null,
+  modalData: { item: null, type: null, visible: false },
 };
 const userSlice = createSlice({
   name: "user",
@@ -32,11 +31,11 @@ const userSlice = createSlice({
     });
   },
   reducers: {
-    changeData(state, { payload }) {
-      state.userData.tel = "ggg";
+    changeContacts(state, { payload }) {
+      state.userContacts = payload;
     },
-    changeVisibleContactsModal(state, { payload }) {
-      state.modalData = null;
+    optionsVisible(state, { payload }) {
+      state.modalData = payload;
     },
     changedData(state, { payload }) {
       state.changedData = payload;
@@ -44,7 +43,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeData, changeVisibleContactsModal, changedData } =
+export const { changeContacts, optionsVisible, changedData } =
   userSlice.actions;
 
 export default userSlice.reducer;

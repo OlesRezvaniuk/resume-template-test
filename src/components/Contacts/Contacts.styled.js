@@ -64,3 +64,12 @@ export const EditIcon = styled(editIconPrimal)`
   width: 15px;
   fill: inherit;
 `;
+
+export const ContactsInput = styled.input`
+  color: #fff;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+`;
